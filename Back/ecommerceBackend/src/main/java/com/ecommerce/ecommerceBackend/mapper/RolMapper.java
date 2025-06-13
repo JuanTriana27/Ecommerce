@@ -26,6 +26,7 @@ public class RolMapper {
     // Metodo Request
     public static Rol createRequestToModel(CreateRolRequest request) {
         return Rol.builder()
+                .idRol(request.getIdRol())
                 .nombre(request.getNombre())
                 .build();
     }
