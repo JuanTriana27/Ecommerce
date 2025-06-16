@@ -23,21 +23,6 @@ public class UsuarioMapper {
                 .build();
     }
 
-    // Método dtoToModel
-    public static Usuario dtoToModel(UsuarioDTO usuarioDTO) {
-        return Usuario.builder()
-                .idUsuario(usuarioDTO.getIdUsuario())
-                .nombre(usuarioDTO.getNombre())
-                .apellido(usuarioDTO.getApellido())
-                .email(usuarioDTO.getEmail())
-                .passwordHash(usuarioDTO.getPasswordHash())
-                .fechaCreacion(usuarioDTO.getFechaCreacion())
-                .rol(usuarioDTO.getIdRol() != null
-                        ? Rol.builder().idRol(usuarioDTO.getIdRol()).build()
-                        : null)
-                .build();
-    }
-
     // Método Request
     public static Usuario createRequestToModel(CreateUsuarioRequest request) {
         return Usuario.builder()

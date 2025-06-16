@@ -14,28 +14,4 @@ public class RolMapper {
                 .nombre(rol.getNombre())
                 .build();
     }
-
-    // Metodo dtoToModel
-    public static Rol dtoRol (RolDTO rolDTO) {
-        return Rol.builder()
-                .idRol(rolDTO.getIdRol())
-                .nombre(rolDTO.getNombre())
-                .build();
-    }
-
-    // Metodo Request
-    public static Rol createRequestToModel(CreateRolRequest request) {
-        return Rol.builder()
-                .idRol(request.getIdRol())
-                .nombre(request.getNombre())
-                .build();
-    }
-
-    // Metodo Response
-    public static Rol createResponseToModel(CreateRolResponse rolResponse) {
-        return Rol.builder()
-                .idRol(rolResponse.getIdRol())
-                .nombre(rolResponse.getNombre())
-                .build();
-    }
 }

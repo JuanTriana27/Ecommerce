@@ -16,15 +16,6 @@ public class CategoriaMapper {
                 .build();
     }
 
-    // Metodo dtoToModel
-    public static Categoria dtoCategoria (CategoriaDTO categoriaDTO){
-        return Categoria.builder()
-                .idCategoria(categoriaDTO.getIdCategoria())
-                .nombre(categoriaDTO.getNombre())
-                .descripcion(categoriaDTO.getDescripcion())
-                .build();
-    }
-
     // Metodo Request
     public static Categoria createRequestToModel (CreateCategoriaRequest request){
         return Categoria.builder()
