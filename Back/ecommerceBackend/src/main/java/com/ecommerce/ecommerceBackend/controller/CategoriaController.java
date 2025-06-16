@@ -3,7 +3,6 @@ package com.ecommerce.ecommerceBackend.controller;
 import com.ecommerce.ecommerceBackend.dto.CategoriaDTO;
 import com.ecommerce.ecommerceBackend.dto.request.CreateCategoriaRequest;
 import com.ecommerce.ecommerceBackend.dto.response.CreateCategoriaResponse;
-import com.ecommerce.ecommerceBackend.mapper.CategoriaMapper;
 import com.ecommerce.ecommerceBackend.model.Categoria;
 import com.ecommerce.ecommerceBackend.service.impl.CategoriaServiceImpl;
 import lombok.RequiredArgsConstructor;
