@@ -19,5 +19,7 @@ public class UsuarioDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime fechaCreacion;
     private String passwordHash;
+
+    // Id de ralacion
     private Integer idRol;
 }

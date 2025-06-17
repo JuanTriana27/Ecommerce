@@ -38,7 +38,7 @@ public class ProductoController {
         }
     }
 
-    // Actualizar Producto
+    // Guardar Producto
     @PostMapping("/guardar-nuevo")
     public ResponseEntity<?> guardarProducto(@RequestBody CreateProductoRequest request) {
         try {
