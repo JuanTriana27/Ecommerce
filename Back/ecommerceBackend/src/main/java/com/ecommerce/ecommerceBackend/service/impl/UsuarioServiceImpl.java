@@ -10,6 +10,7 @@ import com.ecommerce.ecommerceBackend.repository.RolRepository;
 import com.ecommerce.ecommerceBackend.repository.UsuarioRepository;
 import com.ecommerce.ecommerceBackend.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final RolRepository rolRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // Obtener todos los usuarios
     @Override
@@ -84,6 +86,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = UsuarioMapper.createRequestToModel(CreateUsuarioRequest);
         usuario.setRol(rol);
 
+        // ENCRIPTAR la password antes de guardar
+        usuario.setPasswordHash(passwordEncoder.encode(CreateUsuarioRequest.getPasswordHash()));
+
         // Guardar en db
         usuario = usuarioRepository.save(usuario);
 
@@ -122,9 +127,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         // Validar que la fecha no sea nula
-        if (request.getFechaCreacion() == null){
-            throw new Exception("La fecha no puede ser nula");
-        }
+//        if (request.getFechaCreacion() == null){
+//            throw new Exception("La fecha no puede ser nula");
+//        }
 
         // Validar ID de entidad relacionada
         if (request.getIdRol() == null || request.getIdRol() <= 0){
@@ -139,7 +144,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuarioExistente.setNombre(request.getNombre());
         usuarioExistente.setApellido(request.getApellido());
         usuarioExistente.setEmail(request.getEmail());
-        usuarioExistente.setPasswordHash(request.getPasswordHash());
+        usuarioExistente.setPasswordHash(passwordEncoder.encode(request.getPasswordHash()));
         usuarioExistente.setFechaCreacion(request.getFechaCreacion() != null ? request.getFechaCreacion() : usuarioExistente.getFechaCreacion());
         usuarioExistente.setRol(rol);
 
@@ -156,5 +161,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuario = usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new Exception("Usuario no encontrado con ID: " + idUsuario));
         usuarioRepository.delete(usuario);
+    }
+
+    @Override
+    public Usuario getUsuarioByEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con email: " + email));
     }
 }

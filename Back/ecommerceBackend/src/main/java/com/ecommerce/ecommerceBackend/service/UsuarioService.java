@@ -13,4 +13,5 @@ public interface UsuarioService {
     CreateUsuarioResponse createUsuarioResponse(CreateUsuarioRequest createUsuarioRequest) throws Exception;
     CreateUsuarioResponse updateUsuario(Integer idUsuario, CreateUsuarioRequest request) throws Exception;
     void deleteUsuario(Integer idUsuario) throws Exception;
+    Usuario getUsuarioByEmail(String email);
 }
