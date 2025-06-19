@@ -31,6 +31,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     // Obtener por id
+    @Override
     public PedidoDTO getPedidoById (Integer idPedido){
 
         // Consular en db pedido por su id
